@@ -12,15 +12,23 @@ public SpeechletResponse onIntent(IntentRequest request, Session session) throws
     switch (intent.getName()) {
         case "foo-intent":
             if (isDefined(slots.get("foo-slot")) {
-                // logic
-                return null;
+                return fooUtterance(slots.get("foo-slot").getValue());
             } else if (isDefined(slots.get("bar-slot")) {
                 SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
                 Date barDate = sdf.parse(slots.get("bar-slot").getValue());
-                // logic
-                return null;
+                return barUtterance(barDate);
             }
      }
+}
+
+private static SpeechletResponse fooUtterance(String foo) {
+    //logic
+    return null;
+}
+
+private static SpeechletResponse barUtterance(Date barDate) {
+    // logic
+    return null;
 }
 
 private static boolean isDefined(Slot slot) {
