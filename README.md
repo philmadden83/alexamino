@@ -27,7 +27,7 @@ private static boolean isDefined(Slot slot) {
     return slot != null && !(slot.getValue() != null || slot.getValue().isEmpty());
 }
 ```
-<p>with<i> Alexamino.</i> Delegation is automatic via it's Speechlet Delegator.</p>
+<p>with<i> Alexamino.</i></p>
 
 ```java
 @IntentHandler("foo-intent")
@@ -44,6 +44,7 @@ public class FooIntentHandler {
     }
 }
 ```
+<p>Delegation is automatic via it's Speechlet Delegator.</p>
 ####Archetecture
 
 Comming Soon
