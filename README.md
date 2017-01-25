@@ -1,7 +1,7 @@
 #Alexamino (WIP)
 
 ####Introduction
-<p><i>Alexamino</i> is a framework built ontop of the <i>Amazon Alexa Skills Kit</i> that aims to remove boilerplate code related to targeting intents toward code that can handle it.</p>
+<p><i>Alexamino</i> is a framework built atop the <i>Amazon Alexa Skills Kit</i> that aims to remove boilerplate code related to targeting intents toward code that can handle it.</p>
 <p>Typically an Alexa skill will have several intents with multiple utterances defined within. <i>Alexamino</i> aims to enable developers to define classes to handle specific intents and methods to handle specfic utterances. It will also
 do simple type conversion </p>
 
@@ -44,9 +44,6 @@ public class FooIntentHandler {
     }
 }
 ```
-<p>Alexamino aims to do this by providing </p>
-
 ####Archetecture
 
-Alexamino effectively is nothing more than than a predefined <i>SpeechletRequestStreamHandler</i> which delegates to an intent handler.
-
+Comming Soon
