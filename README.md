@@ -70,6 +70,13 @@ public class FooIntentHandler {
         // logic
         return null;
     }
+    
+    public SpeechletResponse bazUtterance(Session session,
+                                          @Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate,
+                                          @Slot("baz-slot") String baz) {
+        // logic
+        return null;
+    }
 }
 ```
 <p>Delegation is automatic via it's Speechlet Delegator.</p>
