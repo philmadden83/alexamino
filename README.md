@@ -58,7 +58,7 @@ public class FooIntentHandler {
 @IntentHandler("foo-intent")
 public class FooIntentHandler {
     
-    public SpeechletResponse fooUtterance(@Slot("foo-slot") String foo, 
+    public SpeechletResponse fooUtterance(@Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate, 
                                           Session session, 
                                           @Slot("baz-slot") String baz) {
         // logic
