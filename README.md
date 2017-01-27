@@ -4,7 +4,7 @@
 <p><i>Alexamino</i> is a framework built atop the <i>Amazon Alexa Skills Kit</i>. It aims to reduce boilerplate code currently required to parse intents and send the request toward code that can handle it.</p>
 <p>Typically an Alexa skill will have several intents with multiple utterances defined within. <i>Alexamino</i> aims to delegate intents to specific classes and utterances to specific methods producing readable / easily testable code. 
 </p>
-
+<p>Example without Alexamino</p>
 ```java
 public SpeechletResponse onIntent(IntentRequest request, Session session) throws SpeechletException {
     Intent intent = request.getIntent();
@@ -47,6 +47,23 @@ public class FooIntentHandler {
     }
     
     public SpeechletResponse barUtterance(@Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate) {
+        // logic
+        return null;
+    }
+}
+```
+<p>Alexamino will also inject the session object if required. Order of parameters do not matter. Alexamnio will figure it out.</p>
+```java
+@IntentHandler("foo-intent")
+public class FooIntentHandler {
+    
+    public SpeechletResponse fooUtterance(@Slot("foo-slot") String foo, Session session) {
+        // logic
+        return null;
+    }
+    
+    public SpeechletResponse barUtterance(Session session,
+                                          @Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate) {
         // logic
         return null;
     }
