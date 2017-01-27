@@ -52,7 +52,8 @@ public class FooIntentHandler {
     }
 }
 ```
-<p>Alexamino will also inject the session object if required. Order of parameters do not matter. Alexamnio will figure it out.</p>
+<p>Alexamino will also inject the session object if required.</p>
+<p>Order of parameters do not matter. Alexamnio will figure it out.</p>
 ```java
 @IntentHandler("foo-intent")
 public class FooIntentHandler {
