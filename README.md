@@ -57,17 +57,16 @@ public class FooIntentHandler {
 ```java
 @IntentHandler("foo-intent")
 public class FooIntentHandler {
-    
-    public SpeechletResponse fooUtterance(@Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate, 
-                                          Session session, 
-                                          @Slot("baz-slot") String baz) {
+     public SpeechletResponse barUtterance(Session session,
+                                          @Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate,
+                                          @Slot("foo-slot") String foo) {
         // logic
         return null;
     }
     
-    public SpeechletResponse barUtterance(Session session,
-                                          @Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate,
-                                          @Slot("foo-slot") String foo) {
+    public SpeechletResponse fooUtterance(@Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate, 
+                                          Session session, 
+                                          @Slot("baz-slot") String baz) {
         // logic
         return null;
     }
