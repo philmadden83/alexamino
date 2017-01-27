@@ -66,7 +66,8 @@ public class FooIntentHandler {
     }
     
     public SpeechletResponse barUtterance(Session session,
-                                          @Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate) {
+                                          @Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate,
+                                          @Slot("foo-slot") String foo) {
         // logic
         return null;
     }
