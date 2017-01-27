@@ -71,7 +71,7 @@ public class FooIntentHandler {
         return null;
     }
     
-    public SpeechletResponse bazUtterance(@Slot(value = "baz-slot") String baz,
+    public SpeechletResponse bazUtterance(@Slot("baz-slot") String baz,
                                           @Slot("bar-slot") String bar,
                                           Session session) {
         // logic
