@@ -72,7 +72,7 @@ public class FooIntentHandler {
     }
     
     public SpeechletResponse bazUtterance(@Slot("baz-slot") String baz,
-                                          @Slot("bar-slot") String bar,
+                                          @Slot("foo-slot") String foo,
                                           Session session) {
         // logic
         return null;
