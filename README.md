@@ -43,11 +43,13 @@ private static boolean isDefined(Slot slot) {
 @IntentHandler("foo-intent")
 public class FooIntentHandler {
     
+    @Utterance
     public SpeechletResponse fooUtterance(@Slot("foo-slot") String foo) {
         // logic
         return null;
     }
     
+    @Utterance
     public SpeechletResponse barUtterance(@Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate) {
         // logic
         return null;
