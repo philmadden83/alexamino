@@ -5,6 +5,7 @@
 <p>Typically an Alexa skill will have several intents with multiple utterances defined within. <i>Alexamino</i> aims to delegate intents to specific classes and utterances to specific methods producing readable / easily testable code. 
 </p>
 <p>Example without Alexamino</p>
+
 ```java
 public SpeechletResponse onIntent(IntentRequest request, Session session) throws SpeechletException {
     Intent intent = request.getIntent();
@@ -35,6 +36,7 @@ private static boolean isDefined(Slot slot) {
     return slot != null && !(slot.getValue() != null || slot.getValue().isEmpty());
 }
 ```
+
 <p>with<i> Alexamino.</i></p>
 
 ```java
@@ -52,8 +54,10 @@ public class FooIntentHandler {
     }
 }
 ```
+
 <p>Alexamino will also inject the session object if required.</p>
 <p>Order of parameters do not matter. Alexamnio will figure it out.</p>
+
 ```java
 @IntentHandler("foo-intent")
 public class FooIntentHandler {
@@ -79,6 +83,7 @@ public class FooIntentHandler {
     }
 }
 ```
+
 <p>Delegation is automatic via it's Speechlet Delegator.</p>
 ###Archetecture
 
