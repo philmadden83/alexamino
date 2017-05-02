@@ -50,7 +50,7 @@ public class FooIntentHandler {
     }
     
     @Utterance
-    public SpeechletResponse barUtterance(@Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate) {
+    public SpeechletResponse barUtterance(@Slot(value = "bar-slot") Date barDate) {
         // logic
         return null;
     }
@@ -73,7 +73,7 @@ public class FooIntentHandler {
     }
     
     @Utterance
-    public SpeechletResponse fooUtterance(@Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate, 
+    public SpeechletResponse fooUtterance(@Slot(value = "bar-slot") Date barDate, 
                                           Session session, 
                                           @Slot("baz-slot") String baz) {
         // logic
