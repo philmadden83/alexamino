@@ -9,7 +9,7 @@
 
 <p>
 The below code shows a speechet handling two intents. One with two different utterances (foo-intent) and another with one utterance but
-demonstrating the sometimes often requiredment to inspect Amazon Slot value formatting to determine the action to take (i.e. user asked for data "next saturday" vs asking for data "today").
+demonstrating the necessity to inspect Amazon Slot value formatting to determine an action to take (i.e. user asked for data "next saturday" vs asking for data "today").
 </p>
 
 ```java
