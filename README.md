@@ -153,7 +153,7 @@ public class FooIntentHandler {
     }
     
     @Utterance("Simple example of automatic date conversion.")
-    public SpeechletResponse barUtterance(@Slot(value = "bar-slot") Date barDate) {
+    public SpeechletResponse barUtterance(@Slot("bar-slot") Date barDate) {
         // logic
         return null;
     }
@@ -197,7 +197,7 @@ public class FooIntentHandler {
     
     @Utterance
      public SpeechletResponse barUtterance(Session session,
-                                          @Slot(value = "bar-slot", format="MM-dd-yyyy") Date barDate,
+                                          @Slot("bar-slot") Date barDate,
                                           @Slot("foo-slot") String foo) {
         // logic
         return null;
