@@ -5,7 +5,7 @@
 <p>Typically an Alexa skill will have several intents with multiple utterances defined within. <i>Alexamino</i> aims to delegate intents to specific classes and utterances to specific methods producing readable / easily testable code. 
 </p>
 
-#### Basic example without Alexamino
+#### Basic example <i>without</i> Alexamino
 
 <p>
 The below code shows a speechet handling two intents. One with two different utterances (foo-intent) and another with one utterance but
@@ -102,46 +102,59 @@ private static boolean isDefined(Slot slot) {
 }
 ```
 
-<p>with<i> Alexamino.</i></p>
+#### With<i> Alexamino.</i>
+<p>
+Foo Intent Handler
+</p>
 
 ```java
 @IntentHandler("foo-intent")
 public class FooIntentHandler {
     
-    @Utterance
+    @Utterance("Simple example of a String utterance.")
     public SpeechletResponse fooUtterance(@Slot("foo-slot") String foo) {
         // logic
         return null;
     }
     
-    @Utterance
+    @Utterance("Simple example of automatic date conversion.")
     public SpeechletResponse barUtterance(@Slot(value = "bar-slot") Date barDate) {
         // logic
         return null;
     }
 }
 ```
+
+<p>
+Bar Intent Handler
+</p>
+
 ```java
 @IntentHandler("bar-intent")
 public class BarIntentHandler {
     
-    @Utterance
+    @Utterance("Default handler for all dates unless a weekend has been specified.")
     public SpeechletResponse barUtterance(@Slot("bar-slot") Date foo) {
         // logic
         return null;
     }
     
-    @Utterance
-    public SpeechletResponse barUtterance(@Slot(value = "bar-slot", dateFilter = DateFilter.WEEKEND) Date weekendDate) {
+    @Utterance("Handles uterances that mention past, present or future weekends.")
+    public SpeechletResponse weekendUtterance(@Slot(value = "bar-slot", dateFilter = DateFilter.WEEKEND) Date weekendDate) {
         // logic
         return null;
     }
 
 }
 ```
-
-<p>Alexamino will also inject the session object if required.</p>
-<p>Order of parameters do not matter. Alexamnio will figure it out.</p>
+---
+#### Worth Mentioning
+<p>
+Alexamino will also inject the session object if required.
+</p>
+<p>
+Order of parameters do not matter. Alexamnio will figure it out.
+</p>
 
 ```java
 @IntentHandler("foo-intent")
@@ -173,7 +186,6 @@ public class FooIntentHandler {
 }
 ```
 
-<p>Delegation is automatic via it's Speechlet Delegator.</p>
 ### Archetecture
 
 Comming Soon
