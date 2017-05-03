@@ -2,7 +2,7 @@
 
 ### Introduction
 <p><i>Alexamino</i> is a framework built atop the <i>Amazon Alexa Skills Kit</i>. It aims to reduce boilerplate code currently required to parse intents and send the request toward code that can handle it.</p>
-<p>Typically an Alexa skill will have several intents with multiple utterances defined within. <i>Alexamino</i> aims to delegate intents to specific classes and utterances to specific methods producing readable / easily testable code. 
+<p>Typically an Alexa skill will have several intents with multiple utterances defined within. Alexamino aims to delegate intents to specific classes and utterances to specific methods producing readable / easily testable code. 
 </p>
 
 #### Basic example <i>without</i> Alexamino
@@ -112,7 +112,32 @@ private static boolean isDefined(Slot slot) {
 
 ---
 
-#### With<i> Alexamino.</i>
+#### Solutions with Alexamino.
+<p>
+    Alexamino builds a context, defining your application. The context holds information on the intent handlers (classes annotated with <b>@IntentHandler</b>) in your application 
+    and the "utterance methods" (methods annoted with <b>@Utterance</b>) defined within each intent handler. This happes once at runtime and lives for the life
+    off your application. 
+<p>
+    Given this context, Alexamino is able to delagte incoming Intent Request to a handler via it's internal SpeechletDispatcher. During this delegationm phase the context 
+    is also used for data types conversion to aid with selecting the correct utterance method to use.
+</p>
+<p>
+    As briefly mentioned, utterance methods are chosen based upon slot values contained in the inital raw Intent Request and their formatting. If more than
+    one utterance method can handle a request, one shall be promoted based upon a "Strongest First" matching algorithm. I.e.
+</p>
+
+```java
+    @Slot(value = "a-date", dateFilter=DateFilter.ANY) Date d)<br>
+    @Slot(value = "a-date", dateFilter=DateFilter.WEEKEND) Date d)
+```
+<p>
+    The first slot can handle any date format, the second specifically weekend formats. <i>IF</i> the date happens to be in Amazon's weekend date format then the 
+    utterance method defining the WEEKEND date filter is promoted and the request is delegated to it. If not, the request is delegated to the next weakest match (the ANY format in this example).
+</p>
+
+---
+
+#### Same example given above defined as Alexamino Intent Handlers and Utterance Methods.
 <p>
 Foo Intent Handler
 </p>
