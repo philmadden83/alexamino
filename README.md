@@ -20,62 +20,70 @@ public SpeechletResponse onIntent(IntentRequest request, Session session) throws
         
         case "foo-intent":
         
-            if (isDefined(slots.get("foo-slot")) {
-            
-                return fooIntentFooUtterance(slots.get("foo-slot").getValue());
-            
-            } else if (isDefined(slots.get("bar-slot")) {
-            
-                SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-                Date barDate = sdf.parse(slots.get("bar-slot").getValue());
-                
-                return fooIntentBarUtterance(barDate);
-            }
-            
-            throw new SpeechletException("Unknown utterance.");
+            return handleFooIntent(slots, session);
         
         case "bar-intent":
             
-            if (isDefined(slots.get("bar-slot")) {
-                Date barDate;
-              
-                //Demonstrating the need to check for Amazon Date formats in order to parse the dates correctly.
-            
-                if (slots.get("bar-slot").value().matches("^(?i)(\\d{4})\\-W(\\d{2})-WE$")) {
-            
-                    Matcher matcher = Pattern.compile(Slot.DateFilter.WEEKEND.regex()).matcher(utteranceDate);
-                    if (matcher.find()) {
-                     
-                        String year = matcher.group(1);
-                        String week = matcher.group(2);
-            
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.set(Calendar.HOUR_OF_DAY, 0);
-                        calendar.set(Calendar.MINUTE, 0);
-                        calendar.set(Calendar.SECOND, 0);
-                        calendar.set(Calendar.MILLISECOND, 0);
-                        calendar.set(Calendar.YEAR, Integer.parseInt(year));
-                        calendar.set(Calendar.WEEK_OF_YEAR, Integer.parseInt(week));
-                        calendar.set(Calendar.DAY_OF_WEEK, 7);
-            
-                        return barIntentWeekendUtterance(calendar.getTime());
-                    }
-                    
-                } else {
-            
-                    SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-                    Date barDate = sdf.parse(slots.get("bar-slot").getValue());
-                    
-                    return barIntentRegularUtterance(barDate);
-                }
-            }
-            
-            throw new SpeechletException("Unknown utterance.");
+            return handleBarIntent(slots, session);
         
         default:
             throw new SpeechletException("Unknown intent.");
      }
      
+}
+
+private static SpeechletResponse handleFooIntent(Map<String, Slot> slots, Session session) {
+    if (isDefined(slots.get("foo-slot")) {
+    
+        return fooIntentFooUtterance(slots.get("foo-slot").getValue());
+    
+    } else if (isDefined(slots.get("bar-slot")) {
+    
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+        Date barDate = sdf.parse(slots.get("bar-slot").getValue());
+        
+        return fooIntentBarUtterance(barDate);
+    }
+    
+    throw new SpeechletException("Unknown utterance.");
+}
+
+private static SpeechletResponse handleBarIntent(Map<String, Slot> slots, Session session) {
+    if (isDefined(slots.get("bar-slot")) {
+        Date barDate;
+      
+        //Demonstrating the need to check for Amazon Date formats in order to parse the dates correctly.
+    
+        if (slots.get("bar-slot").value().matches("^(?i)(\\d{4})\\-W(\\d{2})-WE$")) {
+    
+            Matcher matcher = Pattern.compile(Slot.DateFilter.WEEKEND.regex()).matcher(utteranceDate);
+            if (matcher.find()) {
+             
+                String year = matcher.group(1);
+                String week = matcher.group(2);
+    
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, 0);
+                calendar.set(Calendar.MINUTE, 0);
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MILLISECOND, 0);
+                calendar.set(Calendar.YEAR, Integer.parseInt(year));
+                calendar.set(Calendar.WEEK_OF_YEAR, Integer.parseInt(week));
+                calendar.set(Calendar.DAY_OF_WEEK, 7);
+    
+                return barIntentWeekendUtterance(calendar.getTime());
+            }
+            
+        } else {
+    
+            SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+            Date barDate = sdf.parse(slots.get("bar-slot").getValue());
+            
+            return barIntentRegularUtterance(barDate);
+        }
+    }
+    
+    throw new SpeechletException("Unknown utterance.");
 }
 
 private static SpeechletResponse fooIntentFooUtterance(String foo) {
@@ -101,6 +109,8 @@ private static boolean isDefined(Slot slot) {
     return slot != null && !(slot.getValue() != null || slot.getValue().isEmpty());
 }
 ```
+
+---
 
 #### With<i> Alexamino.</i>
 <p>
