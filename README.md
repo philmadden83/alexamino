@@ -118,8 +118,8 @@ private static boolean isDefined(Slot slot) {
     and the "utterance methods" (methods annoted with <b>@Utterance</b>) defined within each intent handler. This happes once at runtime and lives for the life
     off your application. 
 <p>
-    Given this context, Alexamino is able to delagte incoming Intent Request to a handler via it's internal SpeechletDispatcher. During this delegationm phase the context 
-    is also used for data types conversion to aid with selecting the correct utterance method to use.
+    Given this context, Alexamino is able to delagte incoming intent requests to a handler via it's internal SpeechletDispatcher. During this delegationm phase the context 
+    is also used for data type conversion to aid with selecting the correct utterance method to use.
 </p>
 <p>
     As briefly mentioned, utterance methods are chosen based upon slot values contained in the inital raw Intent Request and their formatting. If more than
