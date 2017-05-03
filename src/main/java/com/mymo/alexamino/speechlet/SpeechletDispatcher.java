@@ -1,23 +1,25 @@
-package com.mymo.flexa.speechlet;
+package com.mymo.alexamino.speechlet;
 
 import com.amazon.speech.slu.Slot;
 import com.amazon.speech.speechlet.*;
 import com.amazonaws.util.StringUtils;
 
-import com.mymo.flexa.HandlerContext;
-import com.mymo.flexa.intent.IntentHandler;
+import com.mymo.alexamino.IntentHandlerContext;
+import com.mymo.alexamino.intent.IntentHandler;
 
 import java.util.Map;
+import java.util.stream.Collectors;
+
 /**
  * Created by Phil on 1/23/17.
  */
 public class SpeechletDispatcher implements Speechlet {
 
     //TODO: Look at context to forward request, setup sessions etc
-    private final HandlerContext handlerContext;
+    private final IntentHandlerContext intentHandlerContext;
 
-    public SpeechletDispatcher(HandlerContext handlerContext) {
-        this.handlerContext = handlerContext;
+    public SpeechletDispatcher(IntentHandlerContext handlerContext) {
+        this.intentHandlerContext = handlerContext;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class SpeechletDispatcher implements Speechlet {
 
     @Override
     public SpeechletResponse onIntent(IntentRequest request, Session session) throws SpeechletException {
-        IntentHandler handler = handlerContext.getIntentHandler(request.getIntent().getName());
+        IntentHandler handler = intentHandlerContext.getIntentHandler(request.getIntent().getName());
 
         if (handler == null) {
             throw new SpeechletException("No handler specified defined.");
@@ -41,7 +43,7 @@ public class SpeechletDispatcher implements Speechlet {
         Map<String, Slot> slotMap = request.getIntent().getSlots();
         removeUndefinedSlots(slotMap);
 
-        return handler.handleIntent(slotMap.values(), session);
+        return handler.handleIntent(removeUndefinedSlots(request.getIntent().getSlots()).values(), session);
     }
 
     @Override
@@ -49,9 +51,10 @@ public class SpeechletDispatcher implements Speechlet {
 
     }
 
-    private static void removeUndefinedSlots(Map<String, Slot> slotMap) {
-        slotMap.keySet().stream()
-                .filter(k -> StringUtils.isNullOrEmpty(slotMap.get(k).getValue()))
-                .forEach(s -> slotMap.remove(s));
+    private static Map<String, Slot> removeUndefinedSlots(Map<String, Slot> slotMap) {
+        return slotMap
+                .entrySet().stream()
+                .filter(e -> !StringUtils.isNullOrEmpty(e.getValue().getValue()))
+                .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue()));
     }
 }

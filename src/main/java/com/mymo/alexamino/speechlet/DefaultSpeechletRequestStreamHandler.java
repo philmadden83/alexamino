@@ -1,14 +1,13 @@
-package com.mymo.flexa.speechlet;
+package com.mymo.alexamino.speechlet;
 
 import com.amazon.speech.speechlet.lambda.SpeechletRequestStreamHandler;
-import com.mymo.flexa.HandlerContext;
+import com.mymo.alexamino.IntentHandlerContext;
 
 /**
  * Created by Phil on 1/23/17.
  */
-//TODO: Wire in classpath scanning via spring. Aliases for annotations.
 public class DefaultSpeechletRequestStreamHandler extends SpeechletRequestStreamHandler {
-    private static final HandlerContext SPEECHLET_CONTEXT = new HandlerContext();
+    private static final IntentHandlerContext SPEECHLET_CONTEXT = new IntentHandlerContext();
 
     static {
         SPEECHLET_CONTEXT.init();
